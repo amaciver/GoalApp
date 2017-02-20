@@ -3,11 +3,22 @@ require 'rails_helper'
 
 feature "goal creation" do
 
-  scenario "allows user to create goal" do
+  scenario "allows user to create a private goal" do
+    sign_in_user
+
+    visit(user_url(User.last))
+    fill_in 'Body', with: 'Caress plants'
+    click_on 'Create Goal'
+
+    expect(page).to have_content("Caress plants")
+  end
+
+  scenario "allows user to create a public goal" do
     sign_in_user
 
     visit(user_url(User.last))
     fill_in 'Body', with: 'Water plants'
+    choose 'Public'
     click_on 'Create Goal'
 
     expect(page).to have_content("Water plants")
@@ -16,7 +27,6 @@ feature "goal creation" do
 end
 
 feature "goal viewing" do
-  scenario "users can see their own goals"
   scenario "allows users to see other public goals"
   scenario "hides private goals from other users"
 end
