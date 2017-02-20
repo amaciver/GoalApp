@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   end
 
   def new
+    @form_hidden = true
+    render :new
   end
 
   def create

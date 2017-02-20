@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
   before_validation :ensure_session_token
 
+  has_many :goals
+
   attr_reader :password
 
   def self.find_by_credentials(username, password)

@@ -29,11 +29,7 @@ feature "logging in" do
 
 
   scenario "shows username on the homepage after login" do
-    User.create(username: "akarpov", password: "password")
-    visit(new_session_url)
-    fill_in("Username", with: "akarpov")
-    fill_in("Password", with: "password")
-    click_on("Sign In")
+    sign_in_user
 
     expect(current_path).to eq("/users/#{User.last.id}")
     expect(page).to have_content("akarpov")
