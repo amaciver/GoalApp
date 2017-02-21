@@ -1,5 +1,7 @@
 <h1>Show</h1>
 
+
+
   <form action="<%= goals_url %>" method="post">
     <%= auth_token %>
     <label>Body:
@@ -16,8 +18,14 @@
     <input type="submit" value="Create Goal">
   </form>
 
+<%= button_to "Comment on Goals", new_comment_url, method: :get %>
+
 <ul>
   <% @user.goals.each do |goal| %>
-    <li><%= goal.body %></li>
+    <li><%= goal.body %> </li>
+      <% goal.comments.each do |comment| %>
+        <%= comment.body %>
+      <% end %>
+
   <% end %>
 </ul>

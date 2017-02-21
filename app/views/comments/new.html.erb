@@ -1,0 +1,21 @@
+<form class="" action="<%= comments_url %>" method="post">
+  <%= auth_token %>
+  <select class="" name="comment[commentable_id]">
+    <% @goals.each do |goal| %>
+      <option value="<%= goal.id %>"><%= goal.body %></option>
+    <% end %>
+  </select>
+  <br>
+
+  </select>
+  <select class="" name="comment[body]">
+    <option disabled selected value="">Please qualify your disgust</option>
+    <option value="angry">Angry</option>
+    <option value="miffed">Miffed</option>
+    <option value="petulant">Petulant</option>
+    <option value="pedantic">Pedantic</option>
+
+  </select>
+
+  <input type="submit" name="" value="Submit Disgust">
+</form>
