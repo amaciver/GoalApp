@@ -8,6 +8,13 @@ RSpec.describe User, type: :model do
       user.valid?
       expect(user.errors).to be_present
     end
+
+    it "should have many comments" do
+      user = User.create(username: "mcarlsen", password: "password" )
+      expect(user.comments).to be_empty
+    end
+
+    it { should have_many(:comments) }
   end
 
   describe "class methods" do
