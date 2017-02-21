@@ -11,7 +11,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(username: user_params[:username], password: user_params[:password])
+    user_params[:user_dispositions].each do |dispo|
+      UserDisposition.create!(dispo: dispo, user_id: @user.id)
+    end
     if @user.save
       login(@user)
       redirect_to user_url(@user)
@@ -24,6 +27,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, user_dispositions: [])
   end
 end

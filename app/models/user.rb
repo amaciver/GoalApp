@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   before_validation :ensure_session_token
 
   has_many :goals
+  has_many :user_dispositions
 
   attr_reader :password
 

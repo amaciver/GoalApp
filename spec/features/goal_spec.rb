@@ -7,6 +7,7 @@ feature "goal creation" do
     sign_in_user
 
     visit(user_url(User.last))
+    save_and_open_page
     fill_in 'Body', with: 'Caress plants'
     click_on 'Create Goal'
 
